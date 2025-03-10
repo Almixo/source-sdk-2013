@@ -1674,9 +1674,28 @@ void CTempEnts::EjectBrass( const Vector &pos1, const QAngle &angles, const QAng
 {
 	if ( cl_ejectbrass.GetBool() == false )
 		return;
-
+#ifndef HL1_CLIENT_DLL
 	const model_t *pModel = m_pShells[type];
-	
+#else
+	const model_t *pModel;
+
+	switch ( type )
+	{
+	case 0:
+	default:
+		pModel = m_pShells[0];
+		break;
+	case 1:
+		pModel = m_pShells[1];
+		break;
+	case 2:
+	case 3:
+	case 4:
+		pModel = m_pShells[2];
+		break;
+	}
+#endif
+
 	if ( pModel == NULL )
 		return;
 
@@ -1685,6 +1704,7 @@ void CTempEnts::EjectBrass( const Vector &pos1, const QAngle &angles, const QAng
 	if ( pTemp == NULL )
 		return;
 
+#ifndef HL1_CLIENT_DLL
 	//Keep track of shell type
 	if ( type == 2 )
 	{
@@ -1695,13 +1715,17 @@ void CTempEnts::EjectBrass( const Vector &pos1, const QAngle &angles, const QAng
 		pTemp->hitSound = BOUNCE_SHELL;
 	}
 
-	pTemp->m_nBody	= 0;
+	pTemp->m_nBody = 0;
+#else
+	pTemp->hitSound = type != 1 ? BOUNCE_SHELL : BOUNCE_SHOTSHELL;
+	pTemp->m_nBody = type < 2 ? 0 : ( type - 2 );
+#endif
 
 	pTemp->flags |= ( FTENT_COLLIDEWORLD | FTENT_FADEOUT | FTENT_GRAVITY | FTENT_ROTATE );
 
-	pTemp->m_vecTempEntAngVelocity[0] = random->RandomFloat(-1024,1024);
-	pTemp->m_vecTempEntAngVelocity[1] = random->RandomFloat(-1024,1024);
-	pTemp->m_vecTempEntAngVelocity[2] = random->RandomFloat(-1024,1024);
+	pTemp->m_vecTempEntAngVelocity[0] = random->RandomFloat( -1024, 1024 );
+	pTemp->m_vecTempEntAngVelocity[1] = random->RandomFloat( -1024, 1024 );
+	pTemp->m_vecTempEntAngVelocity[2] = random->RandomFloat( -1024, 1024 );
 
 	//Face forward
 	pTemp->SetAbsAngles( gunAngles );
@@ -1715,9 +1739,9 @@ void CTempEnts::EjectBrass( const Vector &pos1, const QAngle &angles, const QAng
 
 	dir *= random->RandomFloat( 150.0f, 200.0f );
 
-	pTemp->SetVelocity( Vector(dir[0] + random->RandomFloat(-64,64),
-						dir[1] + random->RandomFloat(-64,64),
-						dir[2] + random->RandomFloat(  0,64) ) );
+	pTemp->SetVelocity( Vector( dir[0] + random->RandomFloat( -64, 64 ),
+		dir[1] + random->RandomFloat( -64, 64 ),
+		dir[2] + random->RandomFloat( 0, 64 ) ) );
 
 	pTemp->die = gpGlobals->curtime + 1.0f + random->RandomFloat( 0.0f, 1.0f );	// Add an extra 0-1 secs of life	
 }
@@ -2432,15 +2456,22 @@ void CTempEnts::LevelInit()
 
 	m_pSpriteCombineFlash[0] = (model_t *)engine->LoadModel( "effects/combinemuzzle1.vmt" );
 	m_pSpriteCombineFlash[1] = (model_t *)engine->LoadModel( "effects/combinemuzzle2.vmt" );
-
+#ifndef CLIENT_DLL
 	m_pShells[0] = (model_t *) engine->LoadModel( "models/weapons/shell.mdl" );
 	m_pShells[1] = (model_t *) engine->LoadModel( "models/weapons/rifleshell.mdl" );
 	m_pShells[2] = (model_t *) engine->LoadModel( "models/weapons/shotgun_shell.mdl" );
 #endif
+#endif
 
 #if defined( HL1_CLIENT_DLL )
-	m_pHL1Shell			= (model_t *)engine->LoadModel( "models/shell.mdl" );
-	m_pHL1ShotgunShell	= (model_t *)engine->LoadModel( "models/shotgunshell.mdl" );
+	//m_pHL1Shell			= (model_t *)engine->LoadModel( "models/shell.mdl" );
+	//m_pHL1ShotgunShell	= (model_t *)engine->LoadModel( "models/shotgunshell.mdl" );
+
+	m_pShells[0]		= (model_t *)engine->LoadModel( "models/shell.mdl" );
+	m_pShells[1]		= (model_t *)engine->LoadModel( "models/shotgunshell.mdl" );
+	m_pShells[2]		= (model_t *)engine->LoadModel( "models/shells.mdl" );
+	//m_pShells[3]		= (model_t *)engine->LoadModel( "models/shell_medium.mdl" );
+	//m_pShells[4]		= (model_t *)engine->LoadModel( "models/shell_large.mdl" );
 #endif
 
 #if defined( CSTRIKE_DLL ) || defined ( SDK_DLL )
@@ -2478,6 +2509,7 @@ void CTempEnts::Init (void)
 #if defined( HL1_CLIENT_DLL )
 	m_pHL1Shell			= NULL;
 	m_pHL1ShotgunShell	= NULL;
+	m_pDoDShells		= NULL;
 #endif
 
 #if defined( CSTRIKE_DLL ) || defined ( SDK_DLL )
@@ -3313,6 +3345,11 @@ void CTempEnts::HL1EjectBrass( const Vector &vecPosition, const QAngle &angAngle
 	case 1:
 		pModel = m_pHL1ShotgunShell;
 		break;
+	case 2:
+	case 3:
+	case 4:
+		pModel = m_pDoDShells;
+		break;
 	}
 #endif
 	if ( pModel == NULL )
@@ -3326,6 +3363,9 @@ void CTempEnts::HL1EjectBrass( const Vector &vecPosition, const QAngle &angAngle
 	switch ( nType )
 	{
 	case 0:
+	case 2:
+	case 3:
+	case 4:
 	default:
 		pTemp->hitSound = BOUNCE_SHELL;
 		break;
@@ -3334,7 +3374,7 @@ void CTempEnts::HL1EjectBrass( const Vector &vecPosition, const QAngle &angAngle
 		break;
 	}
 
-	pTemp->m_nBody	= 0;
+	pTemp->m_nBody = nType < 2 ? 0 : ( nType - 2 );
 	pTemp->flags |= ( FTENT_COLLIDEWORLD | FTENT_FADEOUT | FTENT_GRAVITY | FTENT_ROTATE );
 
 	pTemp->m_vecTempEntAngVelocity[0] = random->RandomFloat( -512,511 );

@@ -69,23 +69,24 @@ $Configuration
 		$CommandLine		"if not exist $QUOTE$OUTBINDIR$QUOTE mkdir $QUOTE$OUTBINDIR$QUOTE" "\n" 
 		$CommandLine		"$BASE" "call $SRCDIR\vpc_scripts\valve_p4_edit.cmd $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE $SRCDIR" "\n" [!$SOURCESDK && !$JOSH]
 		$CommandLine		"$BASE" "copy $QUOTE$(TargetDir)$(TargetFileName)$QUOTE $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE" "\n" \
-							"if ERRORLEVEL 1 goto BuildEventFailed" "\n" \
-							"if exist $QUOTE$(TargetDir)$(TargetName).map$QUOTE copy $QUOTE$(TargetDir)$(TargetName).map$QUOTE $OUTBINDIR\$(TargetName).map" "\n" 
+							"if ERRORLEVEL 1 goto BuildEventFailed" "\n" "\n" \
+							"if exist $QUOTE$(TargetDir)$(TargetName).map$QUOTE copy $QUOTE$(TargetDir)$(TargetName).map$QUOTE $OUTBINDIR\$(TargetName).map$QUOTE" "\n" 
 		$CommandLine		"$BASE" "call $SRCDIR\vpc_scripts\valve_p4_edit.cmd $QUOTE$OUTBINDIR\$(TargetName).pdb$QUOTE $SRCDIR" "\n"  [!$SOURCESDK && !$JOSH] 
-		$CommandLine		"$BASE" "copy $QUOTE$(TargetDir)$(TargetName).pdb$QUOTE $OUTBINDIR\$(TargetName).pdb" "\n" \
-							"if ERRORLEVEL 1 goto BuildEventFailed" "\n" \
-							"goto BuildEventOK" "\n" \
+		$CommandLine		"$BASE" "if exist $QUOTE$(TargetDir)$(TargetName).pdb$QUOTE copy $QUOTE$(TargetDir)$(TargetName).pdb$QUOTE $QUOTE$OUTBINDIR\$(TargetName).pdb$QUOTE" "\n" \
+							"if ERRORLEVEL 1 goto BuildEventFailed" "\n" "\n" \
+							"goto BuildEventOK" "\n" "\n" \
 							":BuildEventFailed" "\n" \
 							"echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***" "\n" \
 							"del /q $QUOTE$(TargetDir)$(TargetFileName)$QUOTE" "\n" \
-							"exit 1" "\n" \
-							":BuildEventOK" "\n" 
+							"exit 1" "\n" "\n" \
+							":BuildEventOK" "\n" \
+							"exit 0" "\n"
 
 		$CommandLine		"$BASE" "\n" \
 							"$SRCDIR\devtools\signservice\signclient.exe $VSIGN_SERVER $OUTBINDIR\$(TargetFileName)" "\n" [$RETAIL && $PUBLISH && !$JOSH]
 
 		$CommandLine		"$BASE" "\n" \
-							"call $SRCDIR\devtools\bin\vsign.bat -signvalve $OUTBINDIR\$(TargetFileName)" "\n" [!$RETAIL && !$PUBLISH && !$SOURCESDK && !$JOSH]
+							"call $SRCDIR\devtools\bin\vsign.bat -signvalve $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE" "\n" [!$RETAIL && !$PUBLISH && !$SOURCESDK && !$JOSH]
 
 		$Description		"Publishing to $OUTBINDIR"
 		$ExcludedFromBuild	"No"

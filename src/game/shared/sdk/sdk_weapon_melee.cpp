@@ -354,7 +354,7 @@ void CWeaponSDKMelee::Swing( int bIsSecondary )
 	// Send the anim
 	SendWeaponAnim( nHitActivity );
 
-	pOwner->DoAnimationEvent( PLAYERANIMEVENT_ATTACK_PRIMARY );
+	pOwner->DoAnimationEvent( PLAYERANIMEVENT_FIRE_GUN_PRIMARY );
 
 	//Setup our next attack times
 	m_flNextPrimaryAttack = gpGlobals->curtime + GetFireRate();

@@ -16,10 +16,10 @@
 
 ConVar cl_showtextmsg( "cl_showtextmsg", "1", 0, "Enable/disable text messages printing on the screen." );
 
-float g_ColorGreen[3]	= { 153, 255, 153 };
-float g_ColorYellow[3]	= { 255, 178.5, 0.0 };
+int g_ColorGreen[3]	= { 153, 255, 153 };
+int g_ColorYellow[3]	= { 255, 178.5, 0.0 };
 
-float *GetClientColor( int clientIndex )
+int *GetClientColor( int clientIndex )
 {
 	if ( clientIndex == 0 ) // console msg
 	{
@@ -130,7 +130,14 @@ void CHudChatLine::PerformFadeout( void )
 
 			wcsncpy( wText, wbuf + ( m_iNameLength ), wcslen( wbuf + m_iNameLength ) );
 			wText[ wcslen( wbuf + m_iNameLength ) ] = '\0';
-			InsertColorChange( Color( g_ColorYellow[0], g_ColorYellow[1], g_ColorYellow[2], alpha ) );
+
+			Color color;
+
+			int r = 255, g = 179, b = 0;
+
+			color.SetColor( r, g, b, alpha );
+
+			InsertColorChange( color );
 			InsertString( wText );
 			InvalidateLayout( true );
 		}
@@ -181,13 +188,15 @@ void CHudChat::CreateChatInputLine( void )
 
 void CHudChat::CreateChatLines( void )
 {
-	for ( int i = 0; i < CHAT_INTERFACE_LINES; i++ )
+	/*for ( int i = 0; i < CHAT_INTERFACE_LINES; i++ )
 	{
 		char sz[ 32 ];
 		Q_snprintf( sz, sizeof( sz ), "ChatLine%02i", i );
-		m_ChatLines[ i ] = new CHudChatLine( this, sz );
-		m_ChatLines[ i ]->SetVisible( false );		
-	}
+		m_ChatLine[ i ] = new CHudChatLine( this, sz );
+		m_ChatLine[ i ]->SetVisible( false );		
+	}*/
+
+	BaseClass::CreateChatLines();
 }
 
 void CHudChat::ApplySchemeSettings( vgui::IScheme *pScheme )
@@ -236,7 +245,7 @@ void CHudChat::MsgFunc_SayText( bf_read &msg )
 	else
 	{
 		// try to lookup translated string
-		 Printf( "%s", hudtextmessage->LookupString( szString ) );
+		 Printf( CHAT_FILTER_NONE, "%s", hudtextmessage->LookupString( szString ) );
 	}
 
 	Msg( "%s", szString );
@@ -336,7 +345,8 @@ void CHudChat::MsgFunc_TextMsg( bf_read &msg )
 		{
 			Q_strncat( szString, "\n", sizeof(szString), 1 );
 		}
-		Printf( "%s", ConvertCRtoNL( szString ) );
+		Printf( CHAT_FILTER_NONE, "%s", ConvertCRtoNL( szString ) );
+		Msg( "%s", ConvertCRtoNL( szString ) );
 		break;
 
 	case HUD_PRINTCONSOLE:
@@ -395,7 +405,6 @@ void CHudChat::ChatPrintf( int iPlayerIndex, const char *fmt, ... )
 	CHudChatLine *line = (CHudChatLine *)FindUnusedChatLine();
 	if ( !line )
 	{
-		ExpireOldest();
 		line = (CHudChatLine *)FindUnusedChatLine();
 	}
 
@@ -431,24 +440,31 @@ void CHudChat::ChatPrintf( int iPlayerIndex, const char *fmt, ... )
 		}
 	}
 	else
-		line->InsertColorChange( Color( g_ColorYellow[0], g_ColorYellow[1], g_ColorYellow[2], 255 ) );
+	{
+		int r = 255, g = 179, b = 0;
+
+		line->InsertColorChange( Color( r, g, b, 255 ) );
+	}
+		
 
 	char *buf = static_cast<char *>( _alloca( strlen( pmsg ) + 1  ) );
 	wchar_t *wbuf = static_cast<wchar_t *>( _alloca( (strlen( pmsg ) + 1 ) * sizeof(wchar_t) ) );
 	if ( buf )
 	{
-		float *flColor = GetClientColor( iPlayerIndex );
+		Color flColor = GetClientColor( iPlayerIndex );
 
 		line->SetExpireTime();
-	
+
+		int r = 255, g = 179, b = 0;
+
 		// draw the first x characters in the player color
 		Q_strncpy( buf, pmsg, MIN( iNameLength + 1, MAX_PLAYER_NAME_LENGTH+32) );
 		buf[ MIN( iNameLength, MAX_PLAYER_NAME_LENGTH+31) ] = 0;
-		line->InsertColorChange( Color( flColor[0], flColor[1], flColor[2], 255 ) );
+		line->InsertColorChange( flColor );
 		line->InsertString( buf );
 		Q_strncpy( buf, pmsg + iNameLength, strlen( pmsg ));
 		buf[ strlen( pmsg + iNameLength ) ] = '\0';
-		line->InsertColorChange( Color( g_ColorYellow[0], g_ColorYellow[1], g_ColorYellow[2], 255 ) );
+		line->InsertColorChange( Color( r, g, b, 255 ) );
 		g_pVGuiLocalize->ConvertANSIToUnicode( buf, wbuf, strlen(pmsg)*sizeof(wchar_t));
 		line->InsertString( wbuf );
 		line->SetVisible( true );

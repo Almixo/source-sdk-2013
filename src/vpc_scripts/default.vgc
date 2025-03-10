@@ -21,6 +21,8 @@ $Games
 	"PORTAL"
 	"SDK"
 	"TF"
+	"CUSTOM"
+	"BEBA"
 }
 
 $Include "vpc_scripts\projects.vgc"

@@ -12,6 +12,7 @@
 
 
 #include "playerclass_info_parse.h"
+#include "sdk_shareddefs.h"
 #include "networkvar.h"
 
 #if defined ( SDK_USE_PLAYERCLASSES )

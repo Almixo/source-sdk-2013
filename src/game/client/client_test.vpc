@@ -1,0 +1,92 @@
+//-----------------------------------------------------------------------------
+//	CLIENT_HL2MP.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro GAMENAME 	"test" [!$SOURCESDK]
+$Macro GAMENAME 	"mod_test" [$SOURCESDK]
+
+$Include "$SRCDIR\game\client\client_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;.\sdk,.\sdk\vgui,.\hl2,.\hl2\elements,..\shared\sdk,..\shared\hl2"
+		$PreprocessorDefinitions		"$BASE;SDK_CLIENT_DLL;SDK_USE_PLAYERCLASSES"
+	}
+}
+
+$Project "Client (TEST)"
+{
+    $Folder	"Source Files"
+	{
+		$File	"hud_chat.cpp"
+		$File	"c_team_objectiveresource.cpp"
+		$File	"c_team_objectiveresource.h"
+
+        $Folder "SDK"
+        {
+            $Folder "VGUI"
+            {
+                $File	"sdk\vgui\sdkviewport.cpp"
+                $File	"sdk\vgui\vgui_rootpanel_sdk.cpp"
+                $File	"sdk\vgui\sdkviewport.h"
+                $File	"sdk\vgui\vgui_rootpanel_sdk.h"
+            }
+
+            $File	"sdk\c_sdk_env_sparkler.cpp"
+            $File	"sdk\c_sdk_player.cpp"
+            $File	"sdk\c_sdk_team.cpp"
+            $File	"sdk\c_te_firebullets.cpp"
+            $File	"sdk\clientmode_sdk.cpp"
+            $File	"sdk\sdk_fx_impacts.cpp"
+            $File	"sdk\sdk_fx_weaponfx.cpp"
+            $File	"sdk\sdk_hud_ammo.cpp"
+            $File	"sdk\sdk_hud_chat.cpp"
+            $File	"sdk\sdk_hud_health.cpp"
+            $File	"sdk\sdk_hud_message.cpp"
+            $File	"sdk\sdk_hud_weaponselection.cpp"
+            $File	"sdk\sdk_in_main.cpp"
+            $File	"sdk\sdk_prediction.cpp"
+
+            $File	"sdk\c_sdk_player.h"
+            $File	"sdk\c_sdk_team.h"
+            $File	"sdk\clientmode_sdk.h"
+            $File	"sdk\sdk_hud_chat.h"
+
+            $File	"..\shared\sdk\sdk_basegrenade_projectile.cpp"
+            $File	"..\shared\sdk\sdk_fx_shared.cpp"
+            $File	"..\shared\sdk\sdk_gamemovement.cpp"
+            $File	"..\shared\sdk\sdk_gamerules.cpp"
+            $File	"..\shared\sdk\sdk_player_shared.cpp"
+            $File	"..\shared\sdk\sdk_playeranimstate.cpp"
+            $File	"..\shared\sdk\sdk_playerclass_info_parse.cpp"
+            $File	"..\shared\sdk\sdk_shareddefs.cpp"
+            $File	"..\shared\sdk\sdk_usermessages.cpp"
+            $File	"..\shared\sdk\sdk_weapon_melee.cpp"
+            $File	"..\shared\sdk\sdk_weapon_parse.cpp"
+            $File	"..\shared\sdk\weapon_basesdkgrenade.cpp"
+            $File	"..\shared\sdk\weapon_crowbar.cpp"
+            $File	"..\shared\sdk\weapon_grenade.cpp"
+            $File	"..\shared\sdk\weapon_mp5.cpp"
+            $File	"..\shared\sdk\weapon_pistol.cpp"
+            $File	"..\shared\sdk\weapon_sdkbase.cpp"
+            $File	"..\shared\sdk\weapon_shotgun.cpp"
+            $File	"..\shared\sdk\sdk_basegrenade_projectile.h"
+            $File	"..\shared\sdk\sdk_fx_shared.h"
+            $File	"..\shared\sdk\sdk_gamerules.h"
+            $File	"..\shared\sdk\sdk_player_shared.h"
+            $File	"..\shared\sdk\sdk_playeranimstate.h"
+            $File	"..\shared\sdk\sdk_playerclass_info_parse.h"
+            $File	"..\shared\sdk\sdk_shareddefs.h"
+            $File	"..\shared\sdk\sdk_weapon_melee.h"
+            $File	"..\shared\sdk\sdk_weapon_parse.h"
+            $File	"..\shared\sdk\weapon_basesdkgrenade.h"
+            $File	"..\shared\sdk\weapon_grenade.h"
+            $File	"..\shared\sdk\weapon_sdkbase.h"
+        }
+    }
+}

@@ -35,7 +35,7 @@ public:
 	virtual bool Reload();
 	virtual void WeaponIdle();
 
-	virtual SDKWeaponID GetWeaponID( void ) const		{ return WEAPON_MP5; }
+	virtual SDKWeaponID GetWeaponID( void ) const		{ return SDK_WEAPON_MP5; }
 
 
 private:

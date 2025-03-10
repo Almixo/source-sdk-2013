@@ -155,6 +155,7 @@ private:
 #if defined( HL1_CLIENT_DLL )
 	struct model_t			*m_pHL1Shell;
 	struct model_t			*m_pHL1ShotgunShell;
+	struct model_t			*m_pDoDShells;
 #endif
 
 #if defined( CSTRIKE_DLL ) || defined ( SDK_DLL )

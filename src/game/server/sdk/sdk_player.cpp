@@ -63,7 +63,7 @@ void TE_PlayerAnimEvent( CBasePlayer *pPlayer, PlayerAnimEvent_t event, int nDat
 // Tables.
 // -------------------------------------------------------------------------------- //
 BEGIN_DATADESC( CSDKPlayer )
-DEFINE_THINKFUNC( SDKPushawayThink ),
+//DEFINE_THINKFUNC( SDKPushawayThink ),
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( player, CSDKPlayer );
@@ -145,7 +145,7 @@ CSDKPlayer::CSDKPlayer()
 	UseClientSideAnimation();
 	m_angEyeAngles.Init();
 
-	SetViewOffset( SDK_PLAYER_VIEW_OFFSET );
+	SetViewOffset( Vector(0, 0, 64) );
 
 	m_iThrowGrenadeCounter = 0;
 }

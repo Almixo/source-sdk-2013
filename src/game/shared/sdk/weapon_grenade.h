@@ -31,7 +31,7 @@ public:
 
 	CSDKGrenade() {}
 
-	virtual SDKWeaponID GetWeaponID( void ) const		{ return WEAPON_GRENADE; }
+	virtual SDKWeaponID GetWeaponID( void ) const		{ return SDK_WEAPON_GRENADE; }
 
 #ifdef CLIENT_DLL
 

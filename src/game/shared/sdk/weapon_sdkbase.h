@@ -11,6 +11,7 @@
 #endif
 
 #include "sdk_playeranimstate.h"
+#include "sdk_shareddefs.h"
 #include "sdk_weapon_parse.h"
 
 #if defined( CLIENT_DLL )
@@ -28,16 +29,16 @@ class CSDKPlayer;
 //
 // Weapon IDs for all SDK Game weapons
 //
-typedef enum
-{
-	WEAPON_NONE = 0,
-
-	WEAPON_MP5,
-	WEAPON_SHOTGUN,
-	WEAPON_GRENADE,
-	
-	WEAPON_MAX,		// number of weapons weapon index
-} SDKWeaponID;
+//typedef enum
+//{
+//	WEAPON_NONE = 0,
+//
+//	WEAPON_MP5,
+//	WEAPON_SHOTGUN,
+//	WEAPON_GRENADE,
+//	
+//	WEAPON_MAX,		// number of weapons weapon index
+//} SDKWeaponID;
 
 typedef enum
 {

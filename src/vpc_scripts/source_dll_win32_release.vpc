@@ -94,8 +94,8 @@ $Configuration "Release"
 		$BufferSecurityCheck                "No"	[$RETAIL]
 		$BufferSecurityCheck                "Yes"	[!$RETAIL]
 		$EnableFunctionLevelLinking			"Yes (/Gy)"
-		$EnableEnhancedInstructionSet
-		$FloatingPointModel					"Fast (/fp:fast)"
+		$EnableEnhancedInstructionSet		"Advanced Vector Extensions 2 (/arch:AVX2)"
+		$FloatingPointModel					"Precise (/fp:precise)"
 		$EnableFloatingPointExceptions
 
 		// Language
