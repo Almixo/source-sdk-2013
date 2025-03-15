@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Base combat character with no AI
 //
@@ -20,7 +20,7 @@
 
 
 #include "ai_basenpc.h"
-#include "AI_Motor.h"
+#include "ai_motor.h"
 #include "ai_senses.h"
 //=============================================================================
 // >> CHL1NPCTalker

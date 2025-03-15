@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -9,12 +9,12 @@
 #include "cbase.h"
 #include "player.h"
 #include "mathlib/mathlib.h"
-#include "AI_Speech.h"
+#include "ai_speech.h"
 #include "stringregistry.h"
 #include "gamerules.h"
 #include "game.h"
 #include <ctype.h>
-#include "EntityList.h"
+#include "entitylist.h"
 #include "vstdlib/random.h"
 #include "engine/IEngineSound.h"
 #include "ndebugoverlay.h"

@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Player for HL1.
 //
@@ -16,7 +16,7 @@
 #include "ai_hull.h"
 #include "hl2_shareddefs.h"
 #include "info_camera_link.h"
-#include "Point_Camera.h"
+#include "point_camera.h"
 #include "ndebugoverlay.h"
 #include "globals.h"
 #include "ai_interactions.h"
@@ -26,6 +26,8 @@
 #include "predicted_viewmodel.h"
 #include "physics_saverestore.h"
 #include "gamestats.h"
+
+#include "tier0/memdbgon.h"
 
 #define DMG_FREEZE		DMG_VEHICLE
 #define DMG_SLOWFREEZE	DMG_DISSOLVE
@@ -739,7 +741,7 @@ void CHL1_Player::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_rpg" );
 		GiveNamedItem( "ammo_rpgclip" );
 		GiveNamedItem( "weapon_satchel" );
-		GiveNamedItem( "weapon_snark" );
+		//GiveNamedItem( "weapon_snark" );
 
 		gEvilImpulse101 = false;
 		break;

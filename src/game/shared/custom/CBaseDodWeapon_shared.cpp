@@ -1,5 +1,5 @@
 #include "cbase.h"
-#include "CBaseDodWeapon_shared.h"
+#include "CBaseDoDWeapon_shared.h"
 
 LINK_ENTITY_TO_CLASS( basedodcombatweapon, CBaseDoDCombatWeapon );
 

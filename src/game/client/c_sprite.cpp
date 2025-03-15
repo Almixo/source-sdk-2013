@@ -5,11 +5,11 @@
 // $NoKeywords: $
 //===========================================================================//
 #include "cbase.h"
-#include "c_sprite.h"
+#include "c_Sprite.h"
 #include "model_types.h"
 #include "iviewrender.h"
 #include "view.h"
-#include "enginesprite.h"
+#include "engineSprite.h"
 #include "engine/ivmodelinfo.h"
 #include "util_shared.h"
 #include "tier0/vprof.h"

@@ -210,6 +210,11 @@ void C_HL1MP_Player::TraceAttack( const CTakeDamageInfo &info, const Vector &vec
 	}
 }
 
+C_HL1MP_Player * C_HL1MP_Player::GetLocalHL1MPPlayer()
+{
+	return ToHL1MPPlayer( C_BasePlayer::GetLocalPlayer() );
+}
+
 void C_HL1MP_Player::PreThink( void )
 {
 	QAngle vTempAngles = GetLocalAngles();

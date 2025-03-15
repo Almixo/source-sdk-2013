@@ -5,12 +5,12 @@
 // $NoKeywords: $
 //===========================================================================//
 #include "cbase.h"
-#include "enginesprite.h"
+#include "engineSprite.h"
 #include "hud.h"
 #include "materialsystem/imesh.h"
 #include "materialsystem/imaterial.h"
 #include "materialsystem/imaterialvar.h"
-#include "c_sprite.h"
+#include "c_Sprite.h"
 #include "tier1/callqueue.h"
 #include "tier1/KeyValues.h"
 #include "tier2/tier2.h"

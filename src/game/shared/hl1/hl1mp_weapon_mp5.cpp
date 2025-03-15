@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose:
 //
@@ -6,38 +6,30 @@
 //=============================================================================//
 
 #include "cbase.h"
-//#include "basecombatweapon.h"
 #include "hl1mp_basecombatweapon_shared.h"
-#include "NPCevent.h"
-//#include "basecombatcharacter.h"
-//#include "AI_BaseNPC.h"
+#include "npcevent.h"
 #ifdef CLIENT_DLL
 #include "hl1/hl1_c_player.h"
 #else
-#include "player.h"
+#include "hl1_player.h"
 #endif
 #include "hl1mp_weapon_mp5.h"
-//#include "hl1_weapon_mp5.h"
 #ifdef CLIENT_DLL
 #else
 #include "hl1_grenade_mp5.h"
 #endif
-#include "gamerules.h"
 #ifdef CLIENT_DLL
 #else
 #include "soundent.h"
-#include "game.h"
 #endif
-#include "in_buttons.h"
-#include "engine/IEngineSound.h"
 
-extern ConVar    sk_plr_dmg_mp5_grenade;	
+extern ConVar    sk_plr_dmg_mp5_grenade;
 extern ConVar    sk_max_mp5_grenade;
 extern ConVar	 sk_mp5_grenade_radius;
 
 //new
 //extern ConVar	sk_mp5_scnd_attck_md("mp5_scnd_attck_md", "0", FCVAR_CHEAT || FCVAR_ARCHIVE, "Spin, or don't spin?");		//mp5_second_attack_mode
-extern ConVar	sk_mp5_scnd_attck_md("sk_mp5_scnd_attck_md", "0", FCVAR_ARCHIVE);
+ConVar	sk_mp5_scnd_attck_md("sk_mp5_scnd_attck_md", "0", FCVAR_ARCHIVE);
 
 //=========================================================
 //=========================================================
@@ -81,7 +73,7 @@ void CWeaponMP5::PrimaryAttack( void )
 	// Only the player fires this way so we can cast
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
 
-	if ( !pPlayer )	
+	if ( !pPlayer )
 	{
 		return;
 	}
@@ -104,7 +96,7 @@ void CWeaponMP5::PrimaryAttack( void )
 	m_flNextPrimaryAttack	= gpGlobals->curtime + 0.1;
 
 	Vector vecSrc		= pPlayer->Weapon_ShootPosition();
-	Vector vecAiming	= pPlayer->GetAutoaimVector( AUTOAIM_5DEGREES );	
+	Vector vecAiming	= pPlayer->GetAutoaimVector( AUTOAIM_5DEGREES );
 
 	if ( g_pGameRules->IsMultiplayer() )
 	{
@@ -185,7 +177,7 @@ void CWeaponMP5::SecondaryAttack( void )
 		m_pMyGrenade->SetLocalAngularVelocity(QAngle(random->RandomFloat(50, 50), 0, 0));
 	else
 		m_pMyGrenade->SetLocalAngularVelocity( QAngle( random->RandomFloat( -100, 500 ), 0, 0 ) );
-	m_pMyGrenade->SetMoveType( MOVETYPE_FLYGRAVITY ); 
+	m_pMyGrenade->SetMoveType( MOVETYPE_FLYGRAVITY );
 	m_pMyGrenade->SetThrower( GetOwner() );
 	m_pMyGrenade->SetDamage( sk_plr_dmg_mp5_grenade.GetFloat() * g_pGameRules->GetDamageMultiplier() );
 #endif
@@ -210,7 +202,7 @@ void CWeaponMP5::SecondaryAttack( void )
 	if ( pPlayer->GetAmmoCount( m_iSecondaryAmmoType ) <= 0 )
 	{
 		// HEV suit - indicate out of ammo condition
-		pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0); 
+		pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
 	}
 
 	m_flNextPrimaryAttack = gpGlobals->curtime + 1.0;
@@ -238,7 +230,7 @@ void CWeaponMP5::WeaponIdle( void )
 	bool bElapsed = HasWeaponIdleTimeElapsed();
 
 	BaseClass::WeaponIdle();
-	
+
 	if( bElapsed )
 		SetWeaponIdleTime( gpGlobals->curtime + RandomInt( 3, 5 ) );
 }

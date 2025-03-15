@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -11,7 +11,7 @@
 #include "shake.h"
 #include "engine/IEngineSound.h"
 #include "soundent.h"
-#include "EntityList.h"
+#include "entitylist.h"
 #include "hl1_basegrenade.h"
 
 

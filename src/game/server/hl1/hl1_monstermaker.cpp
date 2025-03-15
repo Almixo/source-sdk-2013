@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: An entity that creates NPCs in the game. 
 //
@@ -6,8 +6,8 @@
 
 #include "cbase.h"
 #include "entityapi.h"
-#include "EntityOutput.h"
-#include "AI_BaseNPC.h"
+#include "entityoutput.h"
+#include "ai_basenpc.h"
 #include "hl1_monstermaker.h"
 #include "mapentities.h"
 

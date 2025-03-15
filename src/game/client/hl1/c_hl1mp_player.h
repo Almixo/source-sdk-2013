@@ -56,11 +56,28 @@ public:
 
 	void TraceAttack( const CTakeDamageInfo &info, const Vector &vecDir, trace_t *ptr, CDmgAccumulator *pAccumulator );
 
+	static C_HL1MP_Player *GetLocalHL1MPPlayer();
+
 	virtual ShadowType_t ShadowCastType()
 	{
-		if ( !IsVisible() )
+		/*if ( !IsVisible() )
 			 return SHADOWS_NONE;
 	
+		return SHADOWS_RENDER_TO_TEXTURE_DYNAMIC;*/
+
+		if ( !IsVisible() )
+			return SHADOWS_NONE;
+
+		C_HL1MP_Player *pLocalPlayer = C_HL1MP_Player::GetLocalHL1MPPlayer();
+
+		// if we're first person spectating this player
+		if ( pLocalPlayer &&
+			pLocalPlayer->GetObserverTarget() == this &&
+			pLocalPlayer->GetObserverMode() == OBS_MODE_IN_EYE )
+		{
+			return SHADOWS_NONE;
+		}
+
 		return SHADOWS_RENDER_TO_TEXTURE_DYNAMIC;
 	}
 
@@ -121,6 +138,9 @@ inline C_HL1MP_Player *ToHL1MPPlayer( CBaseEntity *pEntity )
 	return dynamic_cast<C_HL1MP_Player*>( pEntity );
 }
 
-
+//inline C_HL1MP_Player *GetLocalHL1MPPlayer()
+//{ 
+//	return ToHL1MPPlayer( C_BasePlayer::GetLocalPlayer() );
+//};
 
 #endif

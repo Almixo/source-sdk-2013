@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: RPG
 //
@@ -13,8 +13,8 @@
 
 
 #include "hl1mp_basecombatweapon_shared.h"
-//#include "sprite.h"
-//#include "NPCEvent.h"
+//#include "Sprite.h"
+//#include "npcevent.h"
 //#include "smoke_trail.h"
 //#include "hl1_basegrenade.h"
 
@@ -25,8 +25,8 @@
 
 #ifndef CLIENT_DLL
 #include "smoke_trail.h"
-#include "sprite.h"
-#include "NPCEvent.h"
+#include "Sprite.h"
+#include "npcevent.h"
 #include "beam_shared.h"
 #include "hl1_basegrenade.h"
 

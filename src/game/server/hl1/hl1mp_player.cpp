@@ -8,6 +8,7 @@
 #include "cbase.h"
 #include "hl1mp_player.h"
 #include "hl1mp_gamerules.h"
+#include "hl1mp_basecombatweapon_shared.h"
 #include "team.h"
 #include "ammodef.h"
 
@@ -191,9 +192,30 @@ void CHL1MP_Player::PostThink( void )
 
 void CHL1MP_Player::FireBullets( const FireBulletsInfo_t &info )
 {
+	//lagcompensation->StartLagCompensation( this, this->GetCurrentCommand() );
+	//BaseClass::FireBullets( info );
+	//lagcompensation->FinishLagCompensation( this );
+
 	lagcompensation->StartLagCompensation( this, this->GetCurrentCommand() );
-	BaseClass::FireBullets( info );
+
+	FireBulletsInfo_t modinfo = info;
+
+	CBaseHL1MPCombatWeapon *pWeapon = dynamic_cast<CBaseHL1MPCombatWeapon *>( GetActiveWeapon() );
+
+	if ( pWeapon )
+	{
+		modinfo.m_iPlayerDamage = modinfo.m_flDamage;
+	}
+
+	//NoteWeaponFired();
+
+	BaseClass::FireBullets( modinfo );
+
+	// Move other players back to history positions based on local player's lag
 	lagcompensation->FinishLagCompensation( this );
+
+	if ( pWeapon )
+		OnMyWeaponFired( pWeapon );
 }
 
 void CHL1MP_Player::Spawn( void )

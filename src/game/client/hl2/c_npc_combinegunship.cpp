@@ -13,7 +13,7 @@
 #include "fx_line.h"
 #include "iefx.h"
 #include "dlight.h"
-#include "c_sprite.h"
+#include "c_Sprite.h"
 #include "clienteffectprecachesystem.h"
 #include <bitbuf.h>
 

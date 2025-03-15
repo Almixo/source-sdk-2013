@@ -29,7 +29,7 @@ void GetBloodColorHL1( int bloodtype, unsigned char &r, unsigned char &g, unsign
 		g = 0;
 		b = 0;
 	}
-	else if ( bloodtype == BLOOD_COLOR_GREEN ) 
+	else if ( bloodtype == BLOOD_COLOR_GREEN )
 	{
 		r = 195;
 		g = 195;
@@ -47,8 +47,8 @@ class C_HL1Gib : public C_Gib
 {
 	typedef C_BaseAnimating BaseClass;
 public:
-	
-	static C_HL1Gib *C_HL1Gib::CreateClientsideGib( const char *pszModelName, Vector vecOrigin, Vector vecForceDir, AngularImpulse vecAngularImp )
+
+	static C_HL1Gib* /**C_HL1Gib::*/CreateClientsideGib( const char *pszModelName, Vector vecOrigin, Vector vecForceDir, AngularImpulse vecAngularImp )
 	{
 		C_HL1Gib *pGib = new C_HL1Gib;
 
@@ -127,7 +127,7 @@ void FX_HL1Gib( const Vector &origin, const Vector &direction, float scale, int 
 {
 	Vector	offset;
 	int i;
-	
+
 	offset = RandomVector( -16, 16 ) + origin;
 
 	if ( iType == HUMAN_GIBS )
@@ -156,7 +156,7 @@ void FX_HL1Gib( const Vector &origin, const Vector &direction, float scale, int 
 			vVelocity = vVelocity * 4;
 		}
 
-		
+
 		C_HL1Gib *pGib = C_HL1Gib::CreateClientsideGib( pHumanGibsModel, offset, vVelocity * 2, aImpulse );
 
 		//Spawn a head.

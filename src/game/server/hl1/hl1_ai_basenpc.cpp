@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -10,13 +10,13 @@
 #include "scripted.h"
 #include "soundent.h"
 #include "animation.h"
-#include "EntityList.h"
-#include "AI_Navigator.h"
-#include "AI_Motor.h"
+#include "entitylist.h"
+#include "ai_navigator.h"
+#include "ai_motor.h"
 #include "player.h"
 #include "vstdlib/random.h"
 #include "engine/IEngineSound.h"
-#include "NPCevent.h"
+#include "npcevent.h"
 
 #include "effect_dispatch_data.h"
 #include "te_effect_dispatch.h"

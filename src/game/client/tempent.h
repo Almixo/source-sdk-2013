@@ -13,7 +13,7 @@
 
 #include "c_baseentity.h"
 #include "c_baseanimating.h"
-#include "c_sprite.h"
+#include "c_Sprite.h"
 
 // Temporary entity array
 #define TENTPRIORITY_LOW	0

@@ -16,7 +16,7 @@
 #include "bone_setup.h"
 #include "c_rope.h"
 #include "fx_line.h"
-#include "c_sprite.h"
+#include "c_Sprite.h"
 #include "view.h"
 #include "view_scene.h"
 #include "materialsystem/imaterialvar.h"

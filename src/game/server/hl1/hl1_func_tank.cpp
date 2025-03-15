@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -10,7 +10,7 @@
 #include "EnvLaser.h"
 #include "basecombatweapon.h"
 #include "explode.h"
-#include "EventQueue.h"
+#include "eventqueue.h"
 #include "gamerules.h"
 #include "ammodef.h"
 #include "in_buttons.h"
@@ -23,7 +23,7 @@
 #include "physics_cannister.h"
 
 #include "player.h"
-#include "EntityList.h"
+#include "entitylist.h"
 
 
 #define SF_TANK_ACTIVE			0x0001

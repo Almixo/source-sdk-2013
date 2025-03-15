@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Gauss
 //
@@ -6,10 +6,10 @@
 //=============================================================================//
 
 #include "cbase.h"
-#include "NPCEvent.h"
+#include "npcevent.h"
 #include "hl1mp_basecombatweapon_shared.h"
 //#include "basecombatcharacter.h"
-//#include "AI_BaseNPC.h"
+//#include "ai_basenpc.h"
 #include "takedamageinfo.h"
 #ifdef CLIENT_DLL
 #include "hl1/hl1_c_player.h"
@@ -34,7 +34,7 @@
 #else
 #include "te_effect_dispatch.h"
 #endif
-#include "soundemittersystem/isoundemittersystembase.h"
+#include "SoundEmitterSystem/isoundemittersystembase.h"
 
 #define GAUSS_GLOW_SPRITE	"sprites/hotglow.vmt"
 #define GAUSS_BEAM_SPRITE	"sprites/smoke.vmt"

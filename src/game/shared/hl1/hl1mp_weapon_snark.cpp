@@ -10,7 +10,7 @@
 #include "hl1mp_basecombatweapon_shared.h"
 #ifndef CLIENT_DLL
 #include "basecombatcharacter.h"
-#include "AI_BaseNPC.h"
+#include "ai_basenpc.h"
 #include "player.h"
 #include "soundent.h"
 #include "game.h"
@@ -18,7 +18,7 @@
 #include "hl1_npc_snark.h"
 #else
 #include "c_basecombatcharacter.h"
-#include "c_AI_BaseNPC.h"
+#include "c_ai_basenpc.h"
 #include "c_baseplayer.h"
 //#include 
 #endif
