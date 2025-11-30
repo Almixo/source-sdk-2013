@@ -12,7 +12,7 @@
 #include "engine/ivdebugoverlay.h"
 
 #if defined( CLIENT_DLL )
-	#include "engineSprite.h"
+	#include "enginesprite.h"
 	#include "iclientmode.h"
 	#include "c_baseviewmodel.h"
 #	ifdef PORTAL

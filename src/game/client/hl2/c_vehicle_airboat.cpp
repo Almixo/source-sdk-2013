@@ -17,7 +17,7 @@
 #include "ammodef.h"
 #include "SpriteTrail.h"
 #include "beamdraw.h"
-#include "engineSprite.h"
+#include "enginesprite.h"
 #include "fx_quad.h"
 #include "fx.h"
 #include "fx_water.h"

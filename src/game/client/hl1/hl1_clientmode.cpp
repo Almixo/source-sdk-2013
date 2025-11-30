@@ -15,7 +15,7 @@
 
 // default FOV for HL1
 ConVar default_fov( "default_fov", "90", FCVAR_CHEAT );
-ConVar fov_desired( "fov_desired", "90", FCVAR_ARCHIVE | FCVAR_USERINFO, "Sets the base field-of-view.", true, 90.0, true, 120.0 );
+ConVar fov_desired( "fov_desired", "75", FCVAR_ARCHIVE | FCVAR_USERINFO, "Sets the base field-of-view.", true, 75.0, true, 120.0 );
 extern ConVar forcebullets_toggle( "forcebullets_toggle", "1", FCVAR_USERINFO, "Turns on/off Half-Life Source's coded in bullet eject." );
 
 // The current client mode. Always ClientModeNormal in HL.
@@ -122,8 +122,6 @@ void ClientModeHL1Normal::InitViewport()
 float ClientModeHL1Normal::GetViewModelFOV( void )
 {
 	ConVarRef viewmodel_fov( "viewmodel_fov" );
-	if ( viewmodel_fov.GetInt() == 54 )
-		viewmodel_fov.SetValue( 90 );
 	return viewmodel_fov.GetFloat();
 }
 

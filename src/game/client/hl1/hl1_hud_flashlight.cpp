@@ -12,6 +12,7 @@
 #include "iclientmode.h"
 #include "hl1_c_player.h"
 
+#include <vgui/ISurface.h>
 #include <vgui_controls/Panel.h>
 
 

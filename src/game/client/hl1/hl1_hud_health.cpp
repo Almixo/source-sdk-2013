@@ -19,11 +19,16 @@
 
 #include "hl1_hud_numbers.h"
 
+#include <KeyValues.h>
+#include <vgui/ISurface.h>
+#include <vgui/ISystem.h>
 #include <vgui_controls/Panel.h>
 
 using namespace vgui;
 
 #include "hudelement.h"
+
+#include "convar.h"
 
 #define INIT_HEALTH -1
 

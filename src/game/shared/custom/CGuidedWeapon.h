@@ -9,7 +9,7 @@
 #ifndef CLIENT_DLL
 #include "Sprite.h"
 #else
-#include "c_Sprite.h"
+#include "c_sprite.h"
 #endif
 
 #include "tier0/memdbgon.h"

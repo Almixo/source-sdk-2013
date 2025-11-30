@@ -14,8 +14,11 @@
 #include "hudelement.h"
 #include "hud_macros.h"
 #include "engine/IEngineSound.h"
+#include "SoundEmitterSystem/isoundemittersystembase.h"
 #include "iclientmode.h"
+#include <vgui_controls/Controls.h>
 #include <vgui_controls/Panel.h>
+#include <vgui/ISurface.h>
 
 using namespace vgui;
 

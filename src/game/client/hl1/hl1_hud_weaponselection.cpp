@@ -10,8 +10,13 @@
 #include "ammodef.h"
 #include "input.h"
 
+#include <KeyValues.h>
+#include <vgui/IScheme.h>
 #include <vgui/ISurface.h>
+#include <vgui/ISystem.h>
 #include <vgui_controls/Panel.h>
+
+#include <string.h>
 
 
 #define HL1_MAX_WEAPON_SLOTS	5

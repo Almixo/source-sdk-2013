@@ -21,7 +21,7 @@
 #include "view.h"
 #include "ienginevgui.h"
 #include "iefx.h"
-#include "engineSprite.h"
+#include "enginesprite.h"
 #include "networkstringtable_clientdll.h"
 #include "voice_status.h"
 #include "filesystem.h"

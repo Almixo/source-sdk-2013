@@ -8,7 +8,7 @@
 
 #include "cbase.h"
 #include "beamdraw.h"
-#include "engineSprite.h"
+#include "enginesprite.h"
 #include "iviewrender_beams.h"
 #include "view.h"
 #include "iviewrender.h"
