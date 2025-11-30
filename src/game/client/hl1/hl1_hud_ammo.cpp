@@ -7,7 +7,6 @@
 #include "cbase.h"
 #include "hud.h"
 #include "hudelement.h"
-#include "hud_macros.h"
 #include "iclientmode.h"
 #include "hl1_hud_numbers.h"
 
@@ -15,7 +14,7 @@
 #include <vgui_controls/Panel.h>
 #include "ihudlcd.h"
 
-#define MIN_ALPHA	100	
+#define MIN_ALPHA	100.0f	
 
 
 //-----------------------------------------------------------------------------
@@ -120,7 +119,7 @@ void CHudAmmo::Paint( void )
 	int nFontWidth = GetNumberFontWidth( true );
 	int nFontHeight = GetNumberFontHeight( true );
 
-	a = ( int )MAX( MIN_ALPHA, m_flFade );
+	a = ( int )max( MIN_ALPHA, m_flFade );
 
 	if ( m_flFade > 0 )
 		m_flFade -= ( gpGlobals->frametime * 20 );

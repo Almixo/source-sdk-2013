@@ -11,9 +11,6 @@
 #include "hud_macros.h"
 #include "view.h"
 
-#include "iclientmode.h"
-
-#include <KeyValues.h>
 #include <vgui/ISurface.h>
 #include <vgui/ISystem.h>
 #include <vgui_controls/Panel.h>
@@ -22,8 +19,6 @@ using namespace vgui;
 
 #include "hudelement.h"
 #include "hl1_hud_numbers.h"
-
-#include "convar.h"
 
 #define FADE_TIME	100
 #define MIN_ALPHA	100	

@@ -7,7 +7,6 @@
 #include "cbase.h"
 #include "history_resource.h"
 #include "hud_macros.h"
-#include <vgui_controls/Controls.h>
 #include <vgui/ISurface.h>
 #include "iclientmode.h"
 
@@ -218,7 +217,7 @@ void CHudHistoryResource::Paint( void )
 			int r, g, b, nUnused;
 			(gHUD.m_clrYellowish).GetColor( r, g, b, nUnused );
 
-			Color clrAmmo( r, g, b, MIN( scale, 255 ) );
+			Color clrAmmo( r, g, b, min( scale, 255.0f ) );
 
 			int nHudElemWidth, nHudElemHeight;
 			GetSize( nHudElemWidth, nHudElemHeight );
@@ -269,7 +268,7 @@ void CHudHistoryResource::Paint( void )
 						// if the weapon doesn't have ammo, display it as red
 						Color clrReddish( 255, 16, 16, 255 );
 						clrReddish.GetColor( r, g, b, nUnused );
-						clrAmmo.SetColor( r, g, b, MIN( scale, 255 ) );
+						clrAmmo.SetColor( r, g, b, min( scale, 255.0f ) );
 					}
 
 					int ypos = nHudElemHeight - (HISTORY_PICKUP_PICK_HEIGHT + (HISTORY_PICKUP_GAP * i));

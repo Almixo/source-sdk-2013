@@ -6,22 +6,15 @@
 //=============================================================================//
 
 #include "cbase.h"
-#include "hud.h"
 #include "hl1_clientscoreboard.h"
 #include "c_team.h"
 #include "c_playerresource.h"
 #include "c_hl1mp_player.h"
 #include "hl1mp_gamerules.h"
 
-#include <KeyValues.h>
-
-#include <vgui/IScheme.h>
 #include <vgui/ILocalize.h>
 #include <vgui/ISurface.h>
-#include <vgui/IVGui.h>
 #include <vgui_controls/SectionedListPanel.h>
-
-#include "voice_status.h"
 
 using namespace vgui;
 
@@ -104,6 +97,13 @@ void CHL1MPClientScoreBoardDialog::ApplySchemeSettings(vgui::IScheme *pScheme)
 	SetBorder(pScheme->GetBorder("BaseBorder"));
 }
 
+void CHL1MPClientScoreBoardDialog::ShowPanel(bool bShow)
+{
+	if ( gpGlobals->maxClients < 2 )
+		return;
+
+	BaseClass::ShowPanel(bShow);
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: sets up base sections

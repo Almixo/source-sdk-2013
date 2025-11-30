@@ -6,7 +6,6 @@
 
 
 #include "cbase.h"
-#include "fx.h"
 #include "c_te_effect_dispatch.h"
 #include "c_te_legacytempents.h"
 #include "tempent.h"
@@ -64,7 +63,7 @@ void HL1GaussBeam( const CEffectData &data )
 	bool	fIsPrimaryFire	= data.m_fFlags;
 	float	flStartWidth;
 	float	flEndWidth;
-	float	flAlpha			= fIsPrimaryFire ? 128 : MIN( 255, data.m_nColor );
+	float	flAlpha			= fIsPrimaryFire ? 128 : min( 255, (int)data.m_nColor );
 	color32	beamColor;
 
 	if ( fIsPrimaryFire )	// primary attack
@@ -122,7 +121,7 @@ void HL1GaussBeamReflect( const CEffectData &data )
 	bool	fIsPrimaryFire	= data.m_fFlags;
 	float	flStartWidth;
 	float	flEndWidth;
-	float	flAlpha			= fIsPrimaryFire ? 128 : MIN( 255, data.m_nColor );
+	float	flAlpha			= fIsPrimaryFire ? 128 : min( 255, (int)data.m_nColor );
 	color32	beamColor;
 
 	if ( fIsPrimaryFire )	// primary attack

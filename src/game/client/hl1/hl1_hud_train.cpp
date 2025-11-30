@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -8,14 +8,8 @@
 #include "hudelement.h"
 #include "hud_macros.h"
 #include "iclientmode.h"
-#include "materialsystem/imaterialsystem.h"
-#include "materialsystem/imaterial.h"
 #include "materialsystem/imaterialvar.h"
 #include "hl1_hud_numbers.h"
-
-#include <vgui_controls/Controls.h>
-#include <vgui_controls/Panel.h>
-#include <vgui/ISurface.h>
 
 using namespace vgui;
 // memdbgon must be the last include file in a .cpp file!!!

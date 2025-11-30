@@ -6,18 +6,11 @@
 
 #include "cbase.h"
 #include "hud.h"
-#include "text_message.h"
 #include "hud_macros.h"
 #include "iclientmode.h"
 #include "view.h"
-#include <KeyValues.h>
 #include <vgui/ISurface.h>
 #include <vgui_controls/Panel.h>
-#include "VGuiMatSurface/IMatSystemSurface.h"
-#include "materialsystem/imaterial.h"
-#include "materialsystem/imesh.h"
-#include "materialsystem/imaterialvar.h"
-#include "IEffects.h"
 #include "hudelement.h"
 
 using namespace vgui;
@@ -132,7 +125,7 @@ void CHudDamageIndicator::DrawDamageIndicatorFront( float flFade )
 		int	y = ( ScreenHeight() / 2 ) - icon_up->Height() * 3;
 		icon_up->DrawSelf( x, y, m_clrIndicator );
 
-		m_flAttackFront = MAX( 0.0, m_flAttackFront - flFade );
+		m_flAttackFront = max( 0.0f, m_flAttackFront - flFade );
 	}
 	else
 	{
@@ -158,7 +151,7 @@ void CHudDamageIndicator::DrawDamageIndicatorRear( float flFade )
 		int	y = ( ScreenHeight() / 2 ) + icon_down->Height() * 2;
 		icon_down->DrawSelf( x, y, m_clrIndicator );
 
-		m_flAttackRear = MAX( 0.0, m_flAttackRear - flFade );
+		m_flAttackRear = max( 0.0f, m_flAttackRear - flFade );
 	}
 	else
 	{
@@ -185,7 +178,7 @@ void CHudDamageIndicator::DrawDamageIndicatorLeft( float flFade )
 		int	y = ( ScreenHeight() / 2 ) - icon_left->Height() / 2;
 		icon_left->DrawSelf( x, y, m_clrIndicator );
 
-		m_flAttackLeft = MAX( 0.0, m_flAttackLeft - flFade );
+		m_flAttackLeft = max( 0.0f, m_flAttackLeft - flFade );
 	}
 	else
 	{
@@ -212,7 +205,7 @@ void CHudDamageIndicator::DrawDamageIndicatorRight( float flFade )
 		int	y = ( ScreenHeight() / 2 ) - icon_right->Height() / 2;
 		icon_right->DrawSelf( x, y, m_clrIndicator );
 
-		m_flAttackRight = MAX( 0.0, m_flAttackRight - flFade );
+		m_flAttackRight = max( 0.0f, m_flAttackRight - flFade );
 	}
 	else
 	{
